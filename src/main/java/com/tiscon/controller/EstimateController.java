@@ -83,6 +83,8 @@ public class EstimateController {
             model.addAttribute("userOrderForm", userOrderForm);
             return "input";
         }
+        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
+        model.addAttribute("userOrderForm", userOrderForm);
         return "confirm";
     }
 

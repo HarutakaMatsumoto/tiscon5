@@ -10,7 +10,6 @@
   <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
 </head>
 
-
 <body>
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
@@ -26,17 +25,17 @@
         <legend>個人情報</legend>
         <div class="form-group">
           <label for="customerName">氏名</label>
-          <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎"/>
+          <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="山田太郎"/>
           <span style="color:red" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
           <label for="tel">連絡先TEL</label>
-          <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678"/>
+          <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="0312345678"/>
           <span style="color:red" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
           <label for="email">連絡先メールアドレス</label>
-          <input type="text" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com"/>
+          <input type="text" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="test@test.com"/>
           <span style="color:red" th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
