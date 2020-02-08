@@ -23,6 +23,7 @@ public class EstimateController {
     private final EstimateDao estimateDAO;
 
     private final EstimateService estimateService;
+    private Model model;
 
     /**
      * コンストラクタ
@@ -48,6 +49,7 @@ public class EstimateController {
      */
     @GetMapping("input")
     String input(Model model) {
+        this.model = model;
         if (!model.containsAttribute("userOrderForm")) {
             model.addAttribute("userOrderForm", new UserOrderForm());
         }
