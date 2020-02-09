@@ -30,7 +30,7 @@
           <input type="hidden" name="customerName" id="customerName" th:value="*{customerName}"/>
         </tr>
         <tr>
-          <th>連絡先TEL</th>
+          <th>連絡先TEL(半角数字)</th>
           <td><span th:text="*{tel}"></span></td>
           <input type="hidden" name="tel" id="tel" th:value="*{tel}"/>
         </tr>
@@ -75,7 +75,7 @@
         </tr>
         </tbody>
       </table>
-      <h4>荷物情報</h4>
+      <h4>荷物情報(半角数字)</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
         <col span="2" style="background-color: #FFFFFF;">
