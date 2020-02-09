@@ -131,11 +131,21 @@ public class EstimateController {
         UserOrderDto dto = new UserOrderDto();
         BeanUtils.copyProperties(userOrderForm, dto);
         Integer price = estimateService.getPrice(dto);
+        Integer option = 0;
+        if(price % 10 == 1){
+            price = price - 1;
+            option = 3000;
+        }
         String price_comma = String.format("%,d", price);
+        Integer move = price - option;
+        String move_comma = String.format("%,d", move);
+        String option_comma = String.format("%,d", option);
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         model.addAttribute("price", price);
         model.addAttribute("price_comma", price_comma);
+        model.addAttribute("move_comma", move_comma);
+        model.addAttribute("option_comma", option_comma);
         return "result";
     }
 

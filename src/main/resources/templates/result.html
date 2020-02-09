@@ -18,6 +18,24 @@
     <h1>概算お見積り結果</h1>
     <div class="col-sm-12">
       <h2>概算お見積り結果は<span th:text="${price_comma}"></span>円です。</h2>
+      <br>
+      <h4>お見積もり内訳</h4>
+      <table class="table table-bordered">
+        <col span="1" style="background-color: #A9B7C7;">
+        <col span="2" style="background-color: #FFFFFF;">
+        <tbody>
+        <tr>
+          <th style="width: 40%">運送費</th>
+          <td><span th:text="${move_comma}"></span>円</td>
+          <input type="hidden" name="customerName" id="customerName" th:value="*{customerName}"/>
+        </tr>
+        <tr>
+          <th>オプション代金</th>
+          <td><span th:text="${option_comma}"></span>円</td>
+          <input type="hidden" name="tel" id="tel" th:value="*{tel}"/>
+        </tr>
+        </tbody>
+      </table>
       <h4>個人情報</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
@@ -39,6 +57,11 @@
           <input type="hidden" name="email" id="email" th:value="*{email}"/>
         </tr>
         <tr>
+          <th>郵便番号</th>
+          <td><span th:text="*{oldPostal}"></span></td>
+          <input type="hidden" name="oldPostal" id="oldPostal" th:value="*{oldPostal}"/>
+        </tr>
+        <tr>
           <th>転居元住所（都道府県）</th>
           <td>
             <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{oldPrefectureId}">東京</span>
@@ -54,6 +77,11 @@
           <th>転居元住所（以降の住所）</th>
           <td><span th:text="*{oldEtcAddress}"></span></td>
           <input type="hidden" name="oldEtcAddress" id="oldEtcAddress" th:value="*{oldEtcAddress}"/>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><span th:text="*{newPostal}"></span></td>
+          <input type="hidden" name="newPostal" id="newPostal" th:value="*{newPostal}"/>
         </tr>
         <tr>
           <th>転居先住所（都道府県）</th>

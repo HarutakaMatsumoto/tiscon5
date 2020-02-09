@@ -92,7 +92,12 @@ public class EstimateService {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
 
-        return priceForDistance + pricePerTruck + priceForOptionalService;
+        int option = 0;
+        if (priceForOptionalService != 0){
+            option = 1;
+        }
+
+        return priceForDistance + pricePerTruck + priceForOptionalService + option;
     }
 
     /**
