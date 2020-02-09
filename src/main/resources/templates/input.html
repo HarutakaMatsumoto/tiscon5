@@ -16,10 +16,10 @@
   <form th:action="@{/submit}" th:object="${userOrderForm}" class="form-horizontal" method="post">
     <h1>重なる分</h1>
     <h1>お見積り情報入力</h1>
+    <small>　転居元住所と転居先住所間の距離、お荷物の情報を元に、簡易お見積もりを行います</small>
     <div th:if="${#fields.hasErrors('all')}">
       <h2 style="color:red; font-weight: bold;">エラー入力があります。修正してください。</h2>
     </div>
-    <small>　転居元住所と転居先住所間の距離、お荷物の情報を元に、簡易お見積もりを行います</small>
     <br>
     <br>
     <div class="col-sm-12">
@@ -103,18 +103,18 @@
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('bed')}? 'has-error'">
           <label for="bed">ベッドの個数</label>
-          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
+          <input type="number" id="bed" name="bed" th:field="*{bed}" class="form-control" min="0" value="3"/>
           <span style="color:red" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('bicycle')}? 'has-error'">
           <label for="bicycle">自転車の個数</label>
-          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
+          <input type="number" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" min="0" value="1"/>
           <span style="color:red" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('washingMachine')}? 'has-error'">
           <label for="washingMachine">洗濯機の個数</label>
-          <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
-                 value="1"/>
+          <input type="number" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
+                 min="0" value="1"/>
           <span style="color:red" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('washingMachineInstallation')}? 'has-error'">
