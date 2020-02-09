@@ -39,6 +39,11 @@
           <input type="hidden" name="email" id="email" th:value="*{email}"/>
         </tr>
         <tr>
+          <th>郵便番号</th>
+          <td><span th:text="*{oldPostal}"></span></td>
+          <input type="hidden" name="oldPostal" id="oldPostal" th:value="*{oldPostal}"/>
+        </tr>
+        <tr>
           <th>転居元住所（都道府県）</th>
           <td>
             <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{oldPrefectureId}">東京</span>
@@ -54,6 +59,11 @@
           <th>転居元住所（以降の住所）</th>
           <td><span th:text="*{oldEtcAddress}"></span></td>
           <input type="hidden" name="oldEtcAddress" id="oldEtcAddress" th:value="*{oldEtcAddress}"/>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><span th:text="*{newPostal}"></span></td>
+          <input type="hidden" name="newPostal" id="newPostal" th:value="*{newPostal}"/>
         </tr>
         <tr>
           <th>転居先住所（都道府県）</th>

@@ -6,6 +6,9 @@ body {
     margin: 0;
 }
 
+.group{
+padding: 10px 30px 10px;
+}
 .has-error input{
     background-color: mistyrose;
     border: 1px solid red;
