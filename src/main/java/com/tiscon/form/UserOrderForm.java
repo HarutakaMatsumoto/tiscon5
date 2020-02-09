@@ -30,10 +30,16 @@ public class UserOrderForm {
     private String oldAddress;
 
     @NotBlank
+    private String oldEtcAddress;
+
+    @NotBlank
     private String newPrefectureId;
 
     @NotBlank
     private String newAddress;
+
+    @NotBlank
+    private String newEtcAddress;
 
     @Numeric
     @NotBlank
@@ -94,6 +100,14 @@ public class UserOrderForm {
         this.oldAddress = oldAddress;
     }
 
+    public String getOldEtcAddress() {
+        return oldEtcAddress;
+    }
+
+    public void setOldEtcAddress(String oldEtcAddress) {
+        this.oldEtcAddress = oldEtcAddress;
+    }
+
     public String getNewPrefectureId() {
         return newPrefectureId;
     }
@@ -108,6 +122,14 @@ public class UserOrderForm {
 
     public void setNewAddress(String newAddress) {
         this.newAddress = newAddress;
+    }
+
+    public String getNewEtcAddress() {
+        return newEtcAddress;
+    }
+
+    public void setNewEtcAddress(String newEtcAddress) {
+        this.newEtcAddress = newEtcAddress;
     }
 
     public String getBox() {

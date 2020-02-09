@@ -11,9 +11,13 @@ public class UserOrderDto {
 
     private String oldAddress;
 
+    private String oldEtcAddress;
+
     private String newPrefectureId;
 
     private String newAddress;
+
+    private String newEtcAddress;
 
     private String box;
 
@@ -65,6 +69,14 @@ public class UserOrderDto {
         this.oldAddress = oldAddress;
     }
 
+    public String getOldEtcAddress() {
+        return oldEtcAddress;
+    }
+
+    public void setOldEtcAddress(String oldEtcAddress) {
+        this.oldEtcAddress = oldEtcAddress;
+    }
+
     public String getNewPrefectureId() {
         return newPrefectureId;
     }
@@ -79,6 +91,14 @@ public class UserOrderDto {
 
     public void setNewAddress(String newAddress) {
         this.newAddress = newAddress;
+    }
+
+    public String getNewEtcAddress() {
+        return newEtcAddress;
+    }
+
+    public void setNewEtcAddress(String newEtcAddress) {
+        this.newEtcAddress = newEtcAddress;
     }
 
     public int getBox() {
