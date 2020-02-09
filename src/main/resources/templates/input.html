@@ -19,6 +19,7 @@
     <div th:if="${#fields.hasErrors('all')}">
       <h2 style="color:red; font-weight: bold;">エラー入力があります。修正してください。</h2>
     </div>
+    <small>　転居元住所と転居先住所間の距離、お荷物の情報を元に、簡易お見積もりを行います</small>
     <div class="col-sm-12">
       <fieldset>
         <legend>個人情報</legend>
@@ -124,7 +125,7 @@
       <br>
       <div class="form-group">
         <div class="text-center">
-          <button type="submit" name="calculation" class="btn btn-primary">確認</button>
+          <button type="submit" name="calculation" class="btn btn-primary">お見積もりを開始する</button>
         </div>
       </div>
     </div>
