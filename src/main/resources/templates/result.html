@@ -18,6 +18,24 @@
     <h1>概算お見積り結果</h1>
     <div class="col-sm-12">
       <h2>概算お見積り結果は<span th:text="${price_comma}"></span>円です。</h2>
+      <br>
+      <h4>お見積もり内訳</h4>
+      <table class="table table-bordered">
+        <col span="1" style="background-color: #A9B7C7;">
+        <col span="2" style="background-color: #FFFFFF;">
+        <tbody>
+        <tr>
+          <th style="width: 40%">運送費</th>
+          <td><span th:text="${move_comma}"></span>円</td>
+          <input type="hidden" name="customerName" id="customerName" th:value="*{customerName}"/>
+        </tr>
+        <tr>
+          <th>オプション代金</th>
+          <td><span th:text="${option_comma}"></span>円</td>
+          <input type="hidden" name="tel" id="tel" th:value="*{tel}"/>
+        </tr>
+        </tbody>
+      </table>
       <h4>個人情報</h4>
       <table class="table table-bordered">
         <col span="1" style="background-color: #A9B7C7;">
