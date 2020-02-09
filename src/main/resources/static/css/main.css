@@ -6,6 +6,11 @@ body {
     margin: 0;
 }
 
+.has-error input{
+    background-color: mistyrose;
+    border: 1px solid red;
+}
+
 .jumbotron {
     background-repeat: no-repeat;
     background-position: calc(60%) calc(70%);
