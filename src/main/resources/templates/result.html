@@ -14,6 +14,7 @@
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
   <form th:action="@{/order}" th:object="${userOrderForm}" class="form-horizontal" method="post">
+    <h1>重なる分</h1>
     <h1>概算お見積り結果</h1>
     <div class="col-sm-12">
       <h2>概算お見積り結果は<span th:text="${price_comma}"></span>円です。</h2>
