@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<nav th:insert="header.html :: header"></nav>
+  <nav th:insert="header.html :: header"></nav>
 <div class="container">
   <form th:action="@{/submit}" th:object="${userOrderForm}" class="form-horizontal" method="post">
     <h1>お見積り情報入力</h1>
@@ -109,8 +109,9 @@
       </fieldset>
       <div class="form-group">
         <div class="text-center">
+          <button hidden type="submit" name="calculation" class="btn btn-primary">確認</button>
           <button type="submit" name="backToTop" class="btn btn-primary">TOPへ戻る</button>
-          <button type="submit" name="confirm" class="btn btn-primary">確認</button>
+          <button type="submit" name="calculation" class="btn btn-primary">確認</button>
         </div>
       </div>
     </div>
