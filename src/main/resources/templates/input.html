@@ -25,17 +25,17 @@
         <legend>個人情報</legend>
         <div class="form-group">
           <label for="customerName">氏名</label>
-          <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="山田太郎"/>
+          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="山田太郎"/>
           <span style="color:red" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
           <label for="tel">連絡先TEL</label>
-          <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="0312345678"/>
+          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="0312345678"/>
           <span style="color:red" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
           <label for="email">連絡先メールアドレス</label>
-          <input type="text" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="test@test.com"/>
+          <input type="text" autocomplete="email" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="test@test.com"/>
           <span style="color:red" th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
@@ -46,9 +46,14 @@
           <span style="color:red" th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
-          <label for="oldAddress">転居元住所（市区町村以下）</label>
-          <input type="text" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
-                 class="form-control" value="新宿区西新宿1-1-1"/>
+          <label for="oldAddress">転居元住所（郡/市区町村）</label>
+          <input type="text" autocomplete="address-level2" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
+                 class="form-control" value="新宿区"/>
+        </div>
+        <div class="form-group">
+          <label for="oldEtcAddress">転居元住所（以降の住所）</label>
+          <input type="text" autocomplete="address-level3" id="oldEtcAddress" name="oldEtcAddress" th:field="*{oldEtcAddress}"
+                 class="form-control" value="西新宿1-1-1"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldAddress')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
@@ -59,9 +64,14 @@
           <span style="color:red" th:each="err : ${#fields.errors('newPrefectureId')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
-          <label for="newAddress">転居先住所（市区町村以下）</label>
-          <input type="text" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
-                 value="札幌市南区1"/>
+          <label for="newAddress">転居先住所（郡/市区町村）</label>
+          <input type="text" autocomplete="address-level2" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
+                 value="札幌市"/>
+        </div>
+        <div class="form-group">
+          <label for="newEtcAddress">転居先住所（以降の住所）</label>
+          <input type="text" autocomplete="address-level3" id="newEtcAddress" name="newEtcAddress" th:field="*{newEtcAddress}" class="form-control"
+                 value="南区1"/>
           <span style="color:red" th:each="err : ${#fields.errors('newAddress')}" th:text="${err}"></span>
         </div>
       </fieldset>
