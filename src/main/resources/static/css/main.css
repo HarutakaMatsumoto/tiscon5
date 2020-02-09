@@ -169,6 +169,23 @@ ul.label {
     padding:0;
 }
 
+.form-control::-webkit-input-placeholder {
+	color: #c0c0c0;
+}
+
+.form-control::-moz-placeholder {
+	color: #c0c0c0;
+}
+
+.form-control:-ms-input-placeholder {
+	color: #c0c0c0;
+}
+
+.form-group-box{
+    width: 200px;
+    float: left;
+}
+
 .index-button {
     display: inline-block;
     margin: 0 .25em 0 0;
