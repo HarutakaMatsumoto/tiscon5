@@ -48,13 +48,13 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('oldAddress')}? 'has-error'">
           <label for="oldAddress">転居元住所（郡/市区町村）</label>
           <input type="text" autocomplete="address-level2" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
-                 class="form-control" value="新宿区"　placeholder="例)新宿区"/>
+                 class="form-control" value="新宿区" placeholder="例)新宿区"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldAddress')}" th:text="${err}"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('oldEtcAddress')}? 'has-error'">
           <label for="oldEtcAddress">転居元住所（以降の住所）</label>
           <input type="text" autocomplete="address-level3" id="oldEtcAddress" name="oldEtcAddress" th:field="*{oldEtcAddress}"
-                 class="form-control" value="西新宿1-1-1"　placeholder="例)西新宿1-1-1"/>
+                 class="form-control" value="西新宿1-1-1" placeholder="例)西新宿1-1-1"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldEtcAddress')}" th:text="${err}"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('newPrefectureId')}? 'has-error'">
