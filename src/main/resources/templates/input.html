@@ -27,65 +27,67 @@
         <!--<div class="form-group">-->
         <div class="form-group" th:classappend="${#fields.hasErrors('customerName')}? 'has-error'">
           <label for="customerName">氏名</label>
-          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="例)山田太郎"/>
+          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="山田太郎"/>
           <span style="color:red" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('tel')}? 'has-error'">
           <label for="tel">連絡先TEL</label>
-          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="例)0312345678"/>
+          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="0312345678"/>
           <span style="color:red" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
           <label for="email">連絡先メールアドレス</label>
-          <input type="text" autocomplete="email" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="例)test@test.com"/>
+          <input type="text" autocomplete="email" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="test@test.com"/>
           <span style="color:red" th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('oldPostal')}? 'has-error'">
-          <label for="oldPostal">転居元郵便番号</label>
+        <label ><span style="font-weight:bold">転居元住所</span></label>
+        <div class="group" th:classappend="${#fields.hasErrors('oldPostal')}? 'has-error'">
+          <label for="oldPostal">郵便番号</label>
           <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-          <input type="text" autocomplete="postal-code" id="oldPostal" name="oldPostal" th:field="*{oldPostal}" class="form-control" value="0001111" placeholder="例)0001111" onKeyUp="AjaxZip3.zip2addr(this,'','oldPrefectureId','oldAddress','oldEtcAddress');"/>
+          <input type="text" autocomplete="postal-code" id="oldPostal" name="oldPostal" th:field="*{oldPostal}" class="form-control" value="0001111" placeholder="0001111" onKeyUp="AjaxZip3.zip2addr(this,'','oldPrefectureId','oldAddress','oldEtcAddress');"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldPostal')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('oldPrefectureId')}? 'has-error'">
-          <label for="oldPrefectureId">転居元住所（都道府県）</label>
+        <div class="group" th:classappend="${#fields.hasErrors('oldPrefectureId')}? 'has-error'">
+          <label for="oldPrefectureId">都道府県</label>
           <select id="oldPrefectureId" name="oldPrefectureId" class="form-control">
             <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{oldPrefectureId}">[[${prefecture.prefectureName}]]</option>
           </select>
           <span style="color:red" th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('oldAddress')}? 'has-error'">
-          <label for="oldAddress">転居元住所（郡/市区町村）</label>
+        <div class="group" th:classappend="${#fields.hasErrors('oldAddress')}? 'has-error'">
+          <label for="oldAddress">郡/市区町村</label>
           <input type="text" autocomplete="address-level2" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
                  class="form-control" value="新宿区" placeholder="例)新宿区"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldAddress')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('oldEtcAddress')}? 'has-error'">
-          <label for="oldEtcAddress">転居元住所（以降の住所）</label>
+        <div class="group" th:classappend="${#fields.hasErrors('oldEtcAddress')}? 'has-error'">
+          <label for="oldEtcAddress">以降の住所</label>
           <input type="text" autocomplete="address-level3" id="oldEtcAddress" name="oldEtcAddress" th:field="*{oldEtcAddress}"
                  class="form-control" value="西新宿1-1-1" placeholder="例)西新宿1-1-1"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldEtcAddress')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('newPostal')}? 'has-error'">
-          <label for="newPostal">転居先郵便番号</label>
+        <label ><span style="font-weight:bold">転居先住所</span>></label>
+        <div class="group" th:classappend="${#fields.hasErrors('newPostal')}? 'has-error'">
+          <label for="newPostal">郵便番号</label>
           <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-          <input type="text" autocomplete="postal-code" id="newPostal" name="newPostal" th:field="*{newPostal}" class="form-control" value="0001111" placeholder="例)0001111" onKeyUp="AjaxZip3.zip2addr(this,'','newPrefectureId','newAddress','newEtcAddress');"/>
+          <input type="text" autocomplete="postal-code" id="newPostal" name="newPostal" th:field="*{newPostal}" class="form-control" value="0001111" placeholder="0001111" onKeyUp="AjaxZip3.zip2addr(this,'','newPrefectureId','newAddress','newEtcAddress');"/>
           <span style="color:red" th:each="err : ${#fields.errors('newPostal')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('newPrefectureId')}? 'has-error'">
-          <label for="newPrefectureId">転居先住所（都道府県）</label>
+        <div class="group" th:classappend="${#fields.hasErrors('newPrefectureId')}? 'has-error'">
+          <label for="newPrefectureId">都道府県</label>
           <select id="newPrefectureId" name="newPrefectureId" class="form-control">
             <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{newPrefectureId}">[[${prefecture.prefectureName}]]</option>
           </select>
           <span style="color:red" th:each="err : ${#fields.errors('newPrefectureId')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('newAddress')}? 'has-error'">
-          <label for="newAddress">転居先住所（郡/市区町村）</label>
+        <div class="group" th:classappend="${#fields.hasErrors('newAddress')}? 'has-error'">
+          <label for="newAddress">郡/市区町村</label>
           <input type="text" autocomplete="address-level2" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
                  value="札幌市" placeholder="例)札幌市"/>
           <span style="color:red" th:each="err : ${#fields.errors('newAddress')}" th:text="${err}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('newEtcAddress')}? 'has-error'">
-          <label for="newEtcAddress">転居先住所（以降の住所）</label>
+        <div class="group" th:classappend="${#fields.hasErrors('newEtcAddress')}? 'has-error'">
+          <label for="newEtcAddress">以降の住所</label>
           <input type="text" autocomplete="address-level3" id="newEtcAddress" name="newEtcAddress" th:field="*{newEtcAddress}" class="form-control"
                  value="南区1" placeholder="例)南区1"/>
           <span style="color:red" th:each="err : ${#fields.errors('newEtcAddress')}" th:text="${err}"></span>
@@ -93,25 +95,25 @@
       </fieldset>
       <fieldset>
         <legend>荷物情報</legend>
-        <div class="form-group" th:classappend="${#fields.hasErrors('box')}? 'has-error'">
+        <div class="form-group-box" th:classappend="${#fields.hasErrors('box')}? 'has-error'">
           <label for="box">段ボールの個数</label>
-          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" min="0" value="10" placeholder="例)10"/>
+          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
           <span style="color:red" th:each="err : ${#fields.errors('box')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('bed')}? 'has-error'">
           <label for="bed">ベッドの個数</label>
-          <input type="number" id="bed" name="bed" th:field="*{bed}" class="form-control" min="0" value="0"/>
+          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
           <span style="color:red" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('bicycle')}? 'has-error'">
           <label for="bicycle">自転車の個数</label>
-          <input type="number" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" min="0" value="0"/>
+          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
           <span style="color:red" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('washingMachine')}? 'has-error'">
           <label for="washingMachine">洗濯機の個数</label>
-          <input type="number" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
-                 min="0" value="0"/>
+          <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
+                 value="1"/>
           <span style="color:red" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('washingMachineInstallation')}? 'has-error'">
@@ -123,10 +125,9 @@
           <span style="color:red" th:each="err : ${#fields.errors('washingMachineInstallation')}" th:text="${err}"></span>
         </div>
       </fieldset>
-      <br>
       <div class="form-group">
         <div class="text-center">
-          <button type="submit" name="calculation" class="btn btn-primary">お見積もりを開始する</button>
+          <button type="submit" name="calculation" class="btn btn-primary">確認</button>
         </div>
       </div>
     </div>
