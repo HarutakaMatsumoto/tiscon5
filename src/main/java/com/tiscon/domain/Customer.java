@@ -16,9 +16,13 @@ public class Customer implements Serializable {
 
     private String email;
 
+    private  String oldPostal;
+
     private String oldAddress;
 
     private String oldEtcAddress;
+
+    private  String newPostal;
 
     private String newAddress;
 
@@ -72,6 +76,14 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
+    public String getOldPostal() {
+        return oldPostal;
+    }
+
+    public void setOldPostal(String oldPostal) {
+        this.oldPostal = oldPostal;
+    }
+
     public String getOldAddress() {
         return oldAddress;
     }
@@ -86,6 +98,14 @@ public class Customer implements Serializable {
 
     public void setOldEtcAddress(String oldEtcAddress) {
         this.oldEtcAddress = oldEtcAddress;
+    }
+
+    public String getNewPostal() {
+        return newPostal;
+    }
+
+    public void setNewPostal(String newPostal) {
+        this.newPostal = newPostal;
     }
 
     public String getNewAddress() {

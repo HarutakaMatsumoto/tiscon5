@@ -24,6 +24,9 @@ public class UserOrderForm {
     private String email;
 
     @NotBlank
+    private String oldPostal;
+
+    @NotBlank
     private String oldPrefectureId;
 
     @NotBlank
@@ -31,6 +34,9 @@ public class UserOrderForm {
 
     @NotBlank
     private String oldEtcAddress;
+
+    @NotBlank
+    private String newPostal;
 
     @NotBlank
     private String newPrefectureId;
@@ -84,6 +90,14 @@ public class UserOrderForm {
         this.email = email;
     }
 
+    public String getOldPostal() {
+        return oldPostal;
+    }
+
+    public void setOldPostal(String oldPostal) {
+        this.oldPostal = oldPostal;
+    }
+
     public String getOldPrefectureId() {
         return oldPrefectureId;
     }
@@ -106,6 +120,14 @@ public class UserOrderForm {
 
     public void setOldEtcAddress(String oldEtcAddress) {
         this.oldEtcAddress = oldEtcAddress;
+    }
+
+    public String getNewPostal() {
+        return newPostal;
+    }
+
+    public void setNewPostal(String newPostal) {
+        this.newPostal = newPostal;
     }
 
     public String getNewPrefectureId() {
