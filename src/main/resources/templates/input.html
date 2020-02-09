@@ -9,7 +9,39 @@
         href="http://fonts.googleapis.com/css?family=Exo:900"/>
   <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
 </head>
+<script>
+        function err_numeric(a) {
+            var flag = 0;
+            if(document.getElementById(a).value.match(/[^0-9]+/)){
+		      flag = 1;
+		    }
 
+            if(flag){
+              document.getElementById(a+"d").textContent="半角数字で入力してください。";
+              document.getElementById(a).style.background = 'mistyrose';
+              document.getElementById(a).style.border = '1px solid red';
+            }else{
+              document.getElementById(a+"d").textContent=null;
+              document.getElementById(a).style = '';
+            }
+        }
+
+        function err_notBlank(a) {
+            var flag = 0;
+            if(!document.getElementById(a).value){
+		      flag = 1;
+		    }
+
+            if(flag){
+              document.getElementById(a+"d").textContent="空白は許可されていません。";
+              document.getElementById(a).style.background = 'mistyrose';
+              document.getElementById(a).style.border = '1px solid red';
+            }else{
+              document.getElementById(a+"d").textContent=null;
+              document.getElementById(a).style = '';
+            }
+        }
+</script>
 <body>
   <nav th:insert="header.html :: header"></nav>
 <div class="container">
@@ -26,13 +58,17 @@
         <!--<div class="form-group">-->
         <div class="form-group" th:classappend="${#fields.hasErrors('customerName')}? 'has-error'">
           <label for="customerName">氏名</label>
-          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="例)山田太郎"/>
-          <span style="color:red" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></span>
+          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="例)山田太郎" onchange="err_notBlank('customerName')"/>
+          <div id="customerNamed" style="color:red" >
+            <span th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></span>
+          </div>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('tel')}? 'has-error'">
           <label for="tel">連絡先TEL</label>
-          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="例)0312345678"/>
-          <span style="color:red" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></span>
+          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="例)0312345678" onchange="err_notBlank('tel');err_numeric('tel')"/>
+          <div id="teld" style="color:red" >
+          <span th:each="err : ${#fields.errors('tel')}" th:text="${err}"></span>
+          </div>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
           <label for="email">連絡先メールアドレス</label>
