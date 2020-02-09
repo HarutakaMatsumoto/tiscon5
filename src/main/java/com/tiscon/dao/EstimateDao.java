@@ -1,6 +1,7 @@
 package com.tiscon.dao;
 
 import com.tiscon.domain.*;
+import com.tiscon.service.LocalSearch;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.*;
@@ -9,6 +10,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Properties;
 
 /**
  * 引越し見積もり機能においてDBとのやり取りを行うクラス。
@@ -90,6 +92,45 @@ public class EstimateDao {
      * @return 距離[km]
      */
     public double getDistance(String prefectureIdFrom, String prefectureIdTo) {
+        Properties propertyFrom = new Properties();
+        try {
+            String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
+            String query = prefectureIdFrom;
+            List<Properties> pois = new LocalSearch(appid).search(query);
+            if (pois.size() == 0) {
+                throw new Error();
+            }
+            propertyFrom = pois.get(0);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.toString());
+        }
+        Properties propertyTo = new Properties();
+        try {
+            String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
+            String query = prefectureIdTo;
+            List<Properties> pois = new LocalSearch(appid).search(query);
+            if (pois.size() == 0) {
+                throw new Error();
+            }
+            propertyTo = pois.get(0);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.toString());
+        }
+
+        Properties distanceP = new Properties();
+        try {
+            String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
+            List<Properties> pois = new LocalSearch(appid).getDistance(appid, propertyFrom, propertyTo);
+            if (pois.size() == 0) {
+                throw new Error();
+            }
+            distanceP = pois.get(0);
+            System.out.println(distanceP.getProperty("Distance"));
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.toString());
+        }
+
+
         // 都道府県のFromとToが逆転しても同じ距離となるため、「そのままの状態のデータ」と「FromとToを逆転させたデータ」をくっつけた状態で距離を取得する。
         String sql = "SELECT DISTANCE FROM (" +
                 "SELECT PREFECTURE_ID_FROM, PREFECTURE_ID_TO, DISTANCE FROM PREFECTURE_DISTANCE UNION ALL " +
