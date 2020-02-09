@@ -79,25 +79,25 @@
       </fieldset>
       <fieldset>
         <legend>荷物情報</legend>
-        <div class="form-group-box" th:classappend="${#fields.hasErrors('box')}? 'has-error'">
+        <div class="form-group" th:classappend="${#fields.hasErrors('box')}? 'has-error'">
           <label for="box">段ボールの個数</label>
-          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
+          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" min="0" value="10" placeholder="10"/>
           <span style="color:red" th:each="err : ${#fields.errors('box')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('bed')}? 'has-error'">
           <label for="bed">ベッドの個数</label>
-          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
+          <input type="number" id="bed" name="bed" th:field="*{bed}" class="form-control" min="0" value="0"/>
           <span style="color:red" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('bicycle')}? 'has-error'">
           <label for="bicycle">自転車の個数</label>
-          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
+          <input type="number" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" min="0" value="0"/>
           <span style="color:red" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('washingMachine')}? 'has-error'">
           <label for="washingMachine">洗濯機の個数</label>
-          <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
-                 value="1"/>
+          <input type="number" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
+                 min="0" value="0"/>
           <span style="color:red" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></span>
         </div>
         <div class="form-group-box" th:classappend="${#fields.hasErrors('washingMachineInstallation')}? 'has-error'">
@@ -109,6 +109,7 @@
           <span style="color:red" th:each="err : ${#fields.errors('washingMachineInstallation')}" th:text="${err}"></span>
         </div>
       </fieldset>
+      <br>
       <div class="form-group">
         <div class="text-center">
           <button type="submit" name="calculation" class="btn btn-primary">確認</button>
