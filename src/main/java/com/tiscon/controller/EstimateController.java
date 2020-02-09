@@ -58,16 +58,7 @@ public class EstimateController {
         return "input";
     }
 
-    /**
-     * TOP画面に戻る。
-     *
-     * @param model 遷移先に連携するデータ
-     * @return 遷移先
-     */
-    @PostMapping(value = "submit", params = "backToTop")
-    String backToTop(Model model) {
-        return "top";
-    }
+
 
     /**
      * 確認画面に遷移する。
@@ -113,7 +104,7 @@ public class EstimateController {
     String backToConfirm(UserOrderForm userOrderForm, Model model) {
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
-        return "confirm";
+        return "input";
     }
 
     /**
@@ -124,12 +115,12 @@ public class EstimateController {
      * @param model         遷移先に連携するデータ
      * @return 遷移先
      */
-    @PostMapping(value = "result", params = "calculation")
+    @PostMapping(value = "submit", params = "calculation")
     String calculation(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
             model.addAttribute("userOrderForm", userOrderForm);
-            return "confirm";
+            return "input";
         }
 
         //料金の計算を行う。
@@ -142,6 +133,17 @@ public class EstimateController {
         model.addAttribute("price", price);
         model.addAttribute("price_comma", price_comma);
         return "result";
+    }
+
+    /**
+     * TOP画面に戻る。
+     *
+     * @param model 遷移先に連携するデータ
+     * @return 遷移先
+     */
+    @PostMapping(value = "submit", params = "backToTop")
+    String backToTop(Model model) {
+        return "top";
     }
 
     /**
