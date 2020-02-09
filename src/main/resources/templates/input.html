@@ -26,17 +26,17 @@
         <legend>個人情報</legend>
         <div class="form-group">
           <label for="customerName">氏名</label>
-          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="山田太郎"/>
+          <input type="text" autocomplete="name" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎" placeholder="例)山田太郎"/>
           <span style="color:red" th:each="err : ${#fields.errors('customerName')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
           <label for="tel">連絡先TEL</label>
-          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="0312345678"/>
+          <input type="tel" autocomplete="tel-area-code" id="tel" name="tel" th:field="*{tel}" class="form-control" value="03-1234-5678" placeholder="例)0312345678"/>
           <span style="color:red" th:each="err : ${#fields.errors('tel')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
           <label for="email">連絡先メールアドレス</label>
-          <input type="text" autocomplete="email" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="test@test.com"/>
+          <input type="text" autocomplete="email" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com" placeholder="例)test@test.com"/>
           <span style="color:red" th:each="err : ${#fields.errors('email')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
@@ -49,12 +49,12 @@
         <div class="form-group">
           <label for="oldAddress">転居元住所（郡/市区町村）</label>
           <input type="text" autocomplete="address-level2" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
-                 class="form-control" value="新宿区"/>
+                 class="form-control" value="例)新宿区" placeholder="例)新宿区"/>
         </div>
         <div class="form-group">
           <label for="oldEtcAddress">転居元住所（以降の住所）</label>
           <input type="text" autocomplete="address-level3" id="oldEtcAddress" name="oldEtcAddress" th:field="*{oldEtcAddress}"
-                 class="form-control" value="西新宿1-1-1"/>
+                 class="form-control" value="例)西新宿1-1-1" placeholder="例)西新宿1-1-1"/>
           <span style="color:red" th:each="err : ${#fields.errors('oldAddress')}" th:text="${err}"></span>
         </div>
         <div class="form-group">
@@ -67,39 +67,39 @@
         <div class="form-group">
           <label for="newAddress">転居先住所（郡/市区町村）</label>
           <input type="text" autocomplete="address-level2" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control"
-                 value="札幌市"/>
+                 value="札幌市" placeholder="例)札幌市"/>
         </div>
         <div class="form-group">
           <label for="newEtcAddress">転居先住所（以降の住所）</label>
           <input type="text" autocomplete="address-level3" id="newEtcAddress" name="newEtcAddress" th:field="*{newEtcAddress}" class="form-control"
-                 value="南区1"/>
+                 value="南区1" placeholder="例)南区1"/>
           <span style="color:red" th:each="err : ${#fields.errors('newAddress')}" th:text="${err}"></span>
         </div>
       </fieldset>
       <fieldset>
         <legend>荷物情報</legend>
-        <div class="form-group">
+        <div class="form-group-box">
           <label for="box">段ボールの個数</label>
-          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
+          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"  placeholder="例)10"/>
           <span style="color:red" th:each="err : ${#fields.errors('box')}" th:text="${err}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group-box">
           <label for="bed">ベッドの個数</label>
-          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
+          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="0" placeholder="例)0"/>
           <span style="color:red" th:each="err : ${#fields.errors('bed')}" th:text="${err}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group-box">
           <label for="bicycle">自転車の個数</label>
-          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
+          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="0"  placeholder="例)0"/>
           <span style="color:red" th:each="err : ${#fields.errors('bicycle')}" th:text="${err}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group-box">
           <label for="washingMachine">洗濯機の個数</label>
           <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
-                 value="1"/>
+                 value="0" placeholder="例)0"/>
           <span style="color:red" th:each="err : ${#fields.errors('washingMachine')}" th:text="${err}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group-box">
           <label for="washingMachineInstallation">洗濯機の設置工事申し込み</label>
           <select id="washingMachineInstallation" name="washingMachineInstallation" class="form-control" th:field="*{washingMachineInstallation}">
             <option th:value="false" th:text="なし">なし</option>
@@ -108,6 +108,7 @@
           <span style="color:red" th:each="err : ${#fields.errors('washingMachineInstallation')}" th:text="${err}"></span>
         </div>
       </fieldset>
+      <br>
       <div class="form-group">
         <div class="text-center">
           <button type="submit" name="calculation" class="btn btn-primary">確認</button>
