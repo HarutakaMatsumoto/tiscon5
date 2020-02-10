@@ -27,10 +27,10 @@ public class LocalSearch {
         // HTTP method
         con.setRequestMethod("GET");
 
-//        // HTTP request headers
-//        for (Map.Entry<String, String> header : headers.entrySet()) {
-//            con.addRequestProperty(header.getKey(), header.getValue());
-//        }
+        // HTTP request headers
+        for (Map.Entry<String, String> header : headers.entrySet()) {
+            con.addRequestProperty(header.getKey(), header.getValue());
+        }
 
         con.connect();
 
@@ -93,24 +93,4 @@ public class LocalSearch {
         return xml2pois(doc);
     }
 
-    public List<Properties> getDistance(String appid, Properties propertyFrom, Properties propertyTo) throws Exception {
-
-        String baseURL = "https://map.yahooapis.jp/dist/V1/distance";
-
-        String params = "";
-        params += "coordinates=";
-        params += propertyFrom.getProperty("lat") + "," + propertyFrom.getProperty("lon") +
-                " " + propertyTo.getProperty("lat") + "," + propertyTo.getProperty("lon");
-        params += "&output=";
-        params += "xml";
-        params += "&appid=dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
-
-        String url = baseURL + "?" + params;
-
-        Map<String, String> headers = new LinkedHashMap<String, String>();
-        headers.put("User-Agent", "Yahoo AppID: " + appid);
-
-        Document doc = get("https://map.yahooapis.jp/dist/V1/distance?coordinates=139.73091159286,35.665662327613 135.49513388889,34.701974166667 130.42052944444,33.589735 &appid=dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-", headers);
-        return xml2pois(doc);
-    }
 }

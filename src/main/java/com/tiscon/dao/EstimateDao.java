@@ -116,38 +116,13 @@ public class EstimateDao {
         } catch (Exception e) {
             System.out.println("ERROR: " + e.toString());
         }
-
-        Properties distanceP = new Properties();
+        com.mkyong.http.Java11HttpClientExample obj = new com.mkyong.http.Java11HttpClientExample();
         try {
-            String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
-            List<Properties> pois = new LocalSearch(appid).getDistance(appid, propertyFrom, propertyTo);
-            if (pois.size() == 0) {
-                throw new Error();
-            }
-            distanceP = pois.get(0);
-            System.out.println(distanceP.getProperty("Distance"));
+            return obj.getDistance(propertyFrom, propertyTo);
         } catch (Exception e) {
             System.out.println("ERROR: " + e.toString());
+            return 0;
         }
-
-
-        // 都道府県のFromとToが逆転しても同じ距離となるため、「そのままの状態のデータ」と「FromとToを逆転させたデータ」をくっつけた状態で距離を取得する。
-        String sql = "SELECT DISTANCE FROM (" +
-                "SELECT PREFECTURE_ID_FROM, PREFECTURE_ID_TO, DISTANCE FROM PREFECTURE_DISTANCE UNION ALL " +
-                "SELECT PREFECTURE_ID_TO PREFECTURE_ID_FROM ,PREFECTURE_ID_FROM PREFECTURE_ID_TO ,DISTANCE FROM PREFECTURE_DISTANCE) " +
-                "WHERE PREFECTURE_ID_FROM  = :prefectureIdFrom AND PREFECTURE_ID_TO  = :prefectureIdTo";
-
-        PrefectureDistance prefectureDistance = new PrefectureDistance();
-        prefectureDistance.setPrefectureIdFrom(prefectureIdFrom);
-        prefectureDistance.setPrefectureIdTo(prefectureIdTo);
-
-        double distance;
-        try {
-            distance = parameterJdbcTemplate.queryForObject(sql, new BeanPropertySqlParameterSource(prefectureDistance), double.class);
-        } catch (IncorrectResultSizeDataAccessException e) {
-            distance = 0;
-        }
-        return distance;
     }
 
     /**
