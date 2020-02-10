@@ -82,11 +82,14 @@
             <span th:each="err : ${#fields.errors('oldPostal')}" th:text="${err}"></span>
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="oldPrefectureId">転居元住所（都道府県）</label>
-          <input type="text" autocomplete="address-level1" id="oldPrefectureId" name="oldPrefectureId" th:field="*{oldPrefectureId}"
-                 class="form-control" value="東京都"/>
+        <div class="group" th:classappend="${#fields.hasErrors('oldPrefectureId')}? 'has-error'">
+          <label for="oldPrefectureId">都道府県</label>
+          <select id="oldPrefectureId" name="oldPrefectureId" class="form-control">
+            <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{oldPrefectureId}">[[${prefecture.prefectureName}]]</option>
+          </select>
+          <div id="oldPrefectureIdd" style="color:red" >
+            <span th:each="err : ${#fields.errors('oldPrefectureId')}" th:text="${err}"></span>
+          </div>
         </div>
         <div class="group" th:classappend="${#fields.hasErrors('oldAddress')}? 'has-error'">
           <label for="oldAddress">郡/市区町村</label>
@@ -113,11 +116,14 @@
             <span th:each="err : ${#fields.errors('newPostal')}" th:text="${err}"></span>
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="newPrefectureId">転居先住所（都道府県）</label>
-          <input type="text" autocomplete="address-level1" id="newPrefectureId" name="newPrefectureId" th:field="*{newPrefectureId}"
-                 class="form-control" value="北海道"/>
+        <div class="group" th:classappend="${#fields.hasErrors('newPrefectureId')}? 'has-error'">
+          <label for="newPrefectureId">都道府県</label>
+          <select id="newPrefectureId" name="newPrefectureId" class="form-control">
+            <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{newPrefectureId}">[[${prefecture.prefectureName}]]</option>
+          </select>
+          <div id="newPrefectureIdd" style="color:red" >
+            <span th:each="err : ${#fields.errors('newPrefectureId')}" th:text="${err}"></span>
+          </div>
         </div>
         <div class="group" th:classappend="${#fields.hasErrors('newAddress')}? 'has-error'">
           <label for="newAddress">郡/市区町村</label>

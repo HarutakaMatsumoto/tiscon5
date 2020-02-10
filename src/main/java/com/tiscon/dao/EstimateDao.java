@@ -95,7 +95,7 @@ public class EstimateDao {
         Properties propertyFrom = new Properties();
         try {
             String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
-            String query = dto.getOldPrefectureId() + dto.getOldAddress();
+            String query = getAllPrefectures().get(Integer.parseInt(dto.getOldPrefectureId()) - 1).getPrefectureName() + dto.getOldAddress();
             List<Properties> pois = new LocalSearch(appid).search(query);
             if (pois.size() == 0) {
                 throw new Error();
@@ -107,7 +107,7 @@ public class EstimateDao {
         Properties propertyTo = new Properties();
         try {
             String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
-            String query = dto.getNewPrefectureId() + dto.getNewAddress();
+            String query = getAllPrefectures().get(Integer.parseInt(dto.getNewPrefectureId()) - 1).getPrefectureName() + dto.getNewAddress();
             List<Properties> pois = new LocalSearch(appid).search(query);
             if (pois.size() == 0) {
                 throw new Error();
