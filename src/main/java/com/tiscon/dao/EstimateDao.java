@@ -1,6 +1,7 @@
 package com.tiscon.dao;
 
 import com.tiscon.domain.*;
+import com.tiscon.dto.UserOrderDto;
 import com.tiscon.service.LocalSearch;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -87,15 +88,14 @@ public class EstimateDao {
     /**
      * 都道府県間の距離を取得する。
      *
-     * @param prefectureIdFrom 引っ越し元の都道府県
-     * @param prefectureIdTo   引越し先の都道府県
+     * @param dto ユーザーデータ
      * @return 距離[km]
      */
-    public double getDistance(String prefectureIdFrom, String prefectureIdTo) {
+    public double getDistance(UserOrderDto dto) {
         Properties propertyFrom = new Properties();
         try {
             String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
-            String query = prefectureIdFrom;
+            String query = dto.getOldPrefectureId() + dto.getOldAddress();
             List<Properties> pois = new LocalSearch(appid).search(query);
             if (pois.size() == 0) {
                 throw new Error();
@@ -107,7 +107,7 @@ public class EstimateDao {
         Properties propertyTo = new Properties();
         try {
             String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
-            String query = prefectureIdTo;
+            String query = dto.getNewPrefectureId() + dto.getNewAddress();
             List<Properties> pois = new LocalSearch(appid).search(query);
             if (pois.size() == 0) {
                 throw new Error();

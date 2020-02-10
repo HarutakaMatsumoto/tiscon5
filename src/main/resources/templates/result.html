@@ -39,9 +39,7 @@
         </tr>
         <tr>
           <th>転居元住所（都道府県）</th>
-          <td>
-            <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{oldPrefectureId}">東京</span>
-          </td>
+          <td><span th:text="*{oldPrefectureId}"></span></td>
           <input type="hidden" name="oldPrefectureId" id="oldPrefectureId" th:value="*{oldPrefectureId}"/>
         </tr>
         <tr>
@@ -56,9 +54,7 @@
         </tr>
         <tr>
           <th>転居先住所（都道府県）</th>
-          <td>
-            <span th:each="prefecture : ${prefectures}" th:text="${prefecture.prefectureName}" th:if="${prefecture.prefectureId}==*{newPrefectureId}">東京</span>
-          </td>
+          <td><span th:text="*{newPrefectureId}"></span></td>
           <input type="hidden" name="newPrefectureId" id="newPrefectureId" th:value="*{newPrefectureId}"/>
         </tr>
         <tr>

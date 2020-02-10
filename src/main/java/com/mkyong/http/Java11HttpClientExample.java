@@ -69,14 +69,9 @@ public class Java11HttpClientExample {
 
         String url = baseURL + "?" + params;
 
-        System.out.println(url);
-
         Document document = sendGet(url);
         Element list = document.getDocumentElement();
-        System.out.println(list.getChildNodes().item(0).getNodeName());
-        String distance = list.getChildNodes().item(0).getChildNodes().item(1).getChildNodes().item(0).getChildNodes().item(2).getNodeValue();
-
-        System.out.println("あ");
+        String distance = list.getChildNodes().item(3).getChildNodes().item(1).getChildNodes().item(5).getChildNodes().item(0).getNodeValue();
         return Double.parseDouble(distance);
     }
 

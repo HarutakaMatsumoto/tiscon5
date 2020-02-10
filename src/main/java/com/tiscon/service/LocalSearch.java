@@ -76,7 +76,7 @@ public class LocalSearch {
 
     public List<Properties> search(String query) throws Exception {
 
-        String baseURL = "https://map.yahooapis.jp/search/local/V1/localSearch";
+        String baseURL = "https://map.yahooapis.jp/geocode/V1/geoCoder";
 
         Map<String, String> params = new LinkedHashMap<String, String>();//,や が入ると文字化け
         params.put("query", query);
