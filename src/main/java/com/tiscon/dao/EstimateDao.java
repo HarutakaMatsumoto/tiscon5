@@ -1,6 +1,8 @@
 package com.tiscon.dao;
 
 import com.tiscon.domain.*;
+import com.tiscon.dto.UserOrderDto;
+import com.tiscon.service.LocalSearch;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.*;
@@ -9,6 +11,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Properties;
 
 /**
  * 引越し見積もり機能においてDBとのやり取りを行うクラス。
@@ -85,28 +88,41 @@ public class EstimateDao {
     /**
      * 都道府県間の距離を取得する。
      *
-     * @param prefectureIdFrom 引っ越し元の都道府県
-     * @param prefectureIdTo   引越し先の都道府県
+     * @param dto ユーザーデータ
      * @return 距離[km]
      */
-    public double getDistance(String prefectureIdFrom, String prefectureIdTo) {
-        // 都道府県のFromとToが逆転しても同じ距離となるため、「そのままの状態のデータ」と「FromとToを逆転させたデータ」をくっつけた状態で距離を取得する。
-        String sql = "SELECT DISTANCE FROM (" +
-                "SELECT PREFECTURE_ID_FROM, PREFECTURE_ID_TO, DISTANCE FROM PREFECTURE_DISTANCE UNION ALL " +
-                "SELECT PREFECTURE_ID_TO PREFECTURE_ID_FROM ,PREFECTURE_ID_FROM PREFECTURE_ID_TO ,DISTANCE FROM PREFECTURE_DISTANCE) " +
-                "WHERE PREFECTURE_ID_FROM  = :prefectureIdFrom AND PREFECTURE_ID_TO  = :prefectureIdTo";
-
-        PrefectureDistance prefectureDistance = new PrefectureDistance();
-        prefectureDistance.setPrefectureIdFrom(prefectureIdFrom);
-        prefectureDistance.setPrefectureIdTo(prefectureIdTo);
-
-        double distance;
+    public double getDistance(UserOrderDto dto) {
+        Properties propertyFrom = new Properties();
         try {
-            distance = parameterJdbcTemplate.queryForObject(sql, new BeanPropertySqlParameterSource(prefectureDistance), double.class);
-        } catch (IncorrectResultSizeDataAccessException e) {
-            distance = 0;
+            String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
+            String query = dto.getOldPrefectureId() + dto.getOldAddress();
+            List<Properties> pois = new LocalSearch(appid).search(query);
+            if (pois.size() == 0) {
+                throw new Error();
+            }
+            propertyFrom = pois.get(0);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.toString());
         }
-        return distance;
+        Properties propertyTo = new Properties();
+        try {
+            String appid = "dj00aiZpPVNNWXcwSkdjWndmTiZzPWNvbnN1bWVyc2VjcmV0Jng9YjM-";
+            String query = dto.getNewPrefectureId() + dto.getNewAddress();
+            List<Properties> pois = new LocalSearch(appid).search(query);
+            if (pois.size() == 0) {
+                throw new Error();
+            }
+            propertyTo = pois.get(0);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.toString());
+        }
+        com.mkyong.http.Java11HttpClientExample obj = new com.mkyong.http.Java11HttpClientExample();
+        try {
+            return obj.getDistance(propertyFrom, propertyTo);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.toString());
+            return 0;
+        }
     }
 
     /**
